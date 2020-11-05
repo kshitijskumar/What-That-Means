@@ -29,10 +29,15 @@ class MeaningsAdapter(var meaningsList: List<Definitions>) : RecyclerView.Adapte
                     stringBuilder.append("$synonym, ")
                 }
             }
-            holder.itemView.tvId.append((position + 1).toString())
-            holder.itemView.tvDefinition.append(currentMeaning.definition)
-            holder.itemView.tvExample.append(currentMeaning.example)
-            holder.itemView.tvSynonyms.append(stringBuilder.toString())
+            val meaningId = "Meaning: ${position+1}"
+            val meaningDefinition = "Definition: ${currentMeaning.definition}"
+            val meaningExample = "Example: ${currentMeaning.example}"
+            val meaningSynonym = "Synonyms: $stringBuilder"
+
+            holder.itemView.tvId.text = meaningId
+            holder.itemView.tvDefinition.text = meaningDefinition
+            holder.itemView.tvExample.text = meaningExample
+            holder.itemView.tvSynonyms.text = meaningSynonym
         }catch (e: Exception){
             Log.d("MeaningsAdapterCatch", e.message.toString())
         }

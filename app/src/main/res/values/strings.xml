@@ -1,3 +1,18 @@
 <resources>
     <string name="app_name">What That Means</string>
+    <string name="word_extracted">Word Extracted</string>
+    <string name="get_image">Get Image</string>
+    <string name="capture_image">Capture Image</string>
+    <string name="enter_word_to_search_for">Enter word to search for</string>
+    <string name="search">Search</string>
+    <string name="or">---OR---</string>
+    <string name="image_to_extract_words_from">Image to extract words from</string>
+    <string name="word">Word:</string>
+    <string name="phonetics">Phonetics:</string>
+    <string name="sorry_no_meaning_found">Sorry, no meaning found :(</string>
+    <string name="no_text_extracted">No text extracted :(</string>
+    <string name="meaning">Meaning: </string>
+    <string name="definition">Definition:</string>
+    <string name="example">Example:</string>
+    <string name="synonyms">Synonyms:</string>
 </resources>

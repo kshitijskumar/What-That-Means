@@ -15,13 +15,14 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_image" />
+        app:srcCompat="@drawable/ic_image"
+        android:contentDescription="@string/image_to_extract_words_from" />
 
     <Button
         android:id="@+id/btnGetImage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Get Image"
+        android:text="@string/get_image"
         app:icon="@drawable/ic_image"
         app:iconGravity="end"
         app:layout_constraintStart_toStartOf="parent"
@@ -31,7 +32,7 @@
         android:id="@+id/btnCaptureImage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Capture Image"
+        android:text="@string/capture_image"
         app:icon="@drawable/ic_camera"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ivImage" />
@@ -41,19 +42,20 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:hint="Enter word to search for"
+        android:hint="@string/enter_word_to_search_for"
         android:inputType="textPersonName"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/btnSearchWithWord"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvOrOption"
-        app:layout_constraintVertical_bias="0.3" />
+        app:layout_constraintVertical_bias="0.3"
+        android:autofillHints="@string/enter_word_to_search_for" />
 
     <Button
         android:id="@+id/btnSearchWithWord"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Search"
+        android:text="@string/search"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvOrOption"
@@ -71,7 +73,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:text="---OR---"
+        android:text="@string/or"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnGetImage" />

@@ -67,7 +67,6 @@ class MainActivity : AppCompatActivity() {
             val image = data?.data
             ivImage.setImageURI(image)
             viewModel.createInputImageUsingUri(image)
-            Log.d("Order", "Changing Activity")
             goToWordsListActivity()
         }
     }
