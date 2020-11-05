@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.example.whatthatmeans.adapter.WordAdapter
 import com.example.whatthatmeans.viewmodel.MainViewModel
@@ -15,17 +16,26 @@ class WordsListActivity : AppCompatActivity(), WordAdapter.WordSelected {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_words_list)
 
+        pbWordsList.visibility = View.VISIBLE
+        tvWordsListError.visibility = View.GONE
+
         Log.d("Order", "In WordsActivity")
         rvWordsList.layoutManager = StaggeredGridLayoutManager(3, StaggeredGridLayoutManager.VERTICAL)
         val adapter = WordAdapter(listOf(),this)
         rvWordsList.adapter = adapter
 
         MainViewModel.textExtractedLiveData.observe(this, {
-            Log.d("ObservingWords", "${it.size}")
+            pbWordsList.visibility = View.VISIBLE
+            tvWordsListError.visibility = View.GONE
+
+            adapter.wordList = it
+            adapter.notifyDataSetChanged()
+
             if (it.isNotEmpty()){
-                adapter.wordList = it
-                adapter.notifyDataSetChanged()
+                pbWordsList.visibility = View.GONE
+                tvWordsListError.visibility = View.GONE
             }else{
+                tvWordsListError.visibility = View.VISIBLE
                 Log.d("WordsListActivity", "Empty list observed")
             }
         })

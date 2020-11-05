@@ -3,6 +3,7 @@ package com.example.whatthatmeans
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import androidx.activity.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.whatthatmeans.adapter.MeaningsAdapter
@@ -21,6 +22,9 @@ class WordMeaning : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_word_meaning)
 
+        pbMeaningLoading.visibility = View.VISIBLE
+        tvNoMeaningFound.visibility = View.GONE
+
         val word = intent.getStringExtra("Word")
         word?.let {
             viewModel.getMeaningFromRepository(it)
@@ -31,9 +35,12 @@ class WordMeaning : AppCompatActivity() {
         rvMeaning.adapter = adapter
 
         viewModel.wordMeaning.observe(this, {
+            pbMeaningLoading.visibility = View.GONE
+            tvNoMeaningFound.visibility = View.GONE
             if (it != null){
                 displayContent(it)
             }else{
+                tvNoMeaningFound.visibility = View.VISIBLE
                 Log.d("WordMeaningActivity", "Else BLock null it")
             }
         })
@@ -44,14 +51,22 @@ class WordMeaning : AppCompatActivity() {
             tvWordChecked.text = it
         }
         meaning.phonetics?.let {
-            it[0].text?.let {phonetic ->
-                tvPhonetics.text = phonetic
+            try{
+                it[0].text?.let { phonetic ->
+                    tvPhonetics.append(phonetic)
+                }
+            }catch (e: Exception){
+                Log.d("DisplayContentFunc", e.message.toString())
             }
         }
         meaning.meanings?.let {
-            it[0].definitions?.let {definition ->
-                adapter.meaningsList = definition
-                adapter.notifyDataSetChanged()
+            try{
+                it[0].definitions?.let { definition ->
+                    adapter.meaningsList = definition
+                    adapter.notifyDataSetChanged()
+                }
+            }catch (e: Exception){
+                Log.d("DisplayContentFunc", e.message.toString())
             }
         }
     }

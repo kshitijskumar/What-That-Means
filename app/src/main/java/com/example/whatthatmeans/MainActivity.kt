@@ -32,6 +32,10 @@ class MainActivity : AppCompatActivity() {
         btnGetImage.setOnClickListener {
             getImage()
         }
+
+        btnSearchWithWord.setOnClickListener {
+            searchMeaningWithWordEntered()
+        }
     }
 
     private fun captureImage(){
@@ -73,4 +77,16 @@ class MainActivity : AppCompatActivity() {
         startActivity(intent)
     }
 
+    private fun searchMeaningWithWordEntered(){
+        val word = etWordSearch.text.toString()
+        if (word.isNotEmpty()){
+            val intent = Intent(this, WordMeaning::class.java).also {
+                it.putExtra("Word", word)
+            }
+            startActivity(intent)
+        }else{
+            etWordSearch.error = "Please enter a word"
+        }
+
+    }
 }
